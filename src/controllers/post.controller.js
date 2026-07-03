@@ -1,7 +1,7 @@
 import Posts from "../models/post.model.js";
 
 // Tạo bài viết mới
-export const createPost = async (req, res) => {
+const createPost = async (req, res) => {
     try {
         const { userId, content } = req.body;
 
@@ -29,7 +29,7 @@ export const createPost = async (req, res) => {
 };
 
 // Cập nhật bài viết
-export const updatePost = async (req, res) => {
+const updatePost = async (req, res) => {
     try {
         const { id } = req.params;
         const { content } = req.body;
@@ -55,7 +55,6 @@ export const updatePost = async (req, res) => {
             post
         });
     } catch (error) {
-        console.error("Lỗi cập nhật bài viết:", error);
 
         if (error.name === "CastError") {
             return res.status(400).json({ message: "ID bài viết không hợp lệ" });
@@ -64,3 +63,8 @@ export const updatePost = async (req, res) => {
         return res.status(500).json({ message: "Đã xảy ra lỗi trên hệ thống khi cập nhật bài viết" });
     }
 };
+
+export {
+    createPost,
+    updatePost
+}

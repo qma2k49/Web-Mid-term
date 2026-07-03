@@ -1,6 +1,6 @@
 import Users from "../models/user.model.js";
 
-export const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     const { apiKey } = req.query;
     if (!apiKey) {
         return res.status(401).json({ message: "Không tìm thấy apiKey" });
@@ -36,7 +36,8 @@ export const authMiddleware = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        console.error("Lỗi xác thực apiKey:", error);
         return res.status(401).json({ message: "Lỗi xác thực apiKey" });
     }
 };
+
+export default authMiddleware;

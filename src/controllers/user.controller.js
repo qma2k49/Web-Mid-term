@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import Users from "../models/user.model.js";
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     try {
         const { userName, email, password } = req.body;
 
@@ -39,7 +39,7 @@ export const register = async (req, res) => {
 };
 
 // Đăng nhập người dùng
-export const login = async (req, res) => {
+const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -73,7 +73,12 @@ export const login = async (req, res) => {
             }
         });
     } catch (error) {
-        console.error("Lỗi đăng nhập:", error);
         return res.status(500).json({ message: "Đã xảy ra lỗi trên hệ thống khi đăng nhập" });
     }
 };
+
+
+export {
+    register,
+    login
+}
